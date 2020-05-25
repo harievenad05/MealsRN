@@ -1,25 +1,32 @@
-//import liraries
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import React from 'react';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {CATEGORIES} from '../data/dummy-data';
+
+const renderGridItem = ({item}) => {
+  return (
+    <View style={styles.gridItem}>
+      <Text>{item.title}</Text>
+    </View>
+  );
+};
 
 const CategoriesScreen = (props) => {
-    return (
-        <View style={styles.container}>
-            <Text>CategoriesScreen</Text>
-            <Button
-                title="Go to CategoryMeals"
-                onPress={() => props.navigation.navigate('CategoryMeal')}
-            />
-        </View>
-    );
+  return (
+    <FlatList data={CATEGORIES} renderItem={renderGridItem} numColumns={2} />
+  );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
+  screen: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  gridItem: {
+    flex: 1,
+    margin: 15,
+    height: 150,
+  },
 });
 
 export default CategoriesScreen;
