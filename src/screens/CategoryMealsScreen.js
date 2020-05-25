@@ -15,7 +15,13 @@ const CategoryMealsScreen = ({route, navigation}) => {
         imageUrl={item.imageUrl}
         complexity={item.complexity}
         affordability={item.affordability}
-        onSelectMeal={() => {}}
+        mealItemClick={() => {
+          navigation.navigate('MealDetail', {
+            detailId: item.id,
+            title: item.title,
+            isFavmeal: true,
+          });
+        }}
       />
     );
   };

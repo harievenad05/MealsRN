@@ -1,6 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {Platform} from 'react-native';
+import HeaderRightBtn from '../components/headerRButton';
 import Colors from '../constants/Colors';
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
@@ -31,9 +32,21 @@ const MealsNavigator = (props) => {
       <Stack.Screen
         name="MealDetail"
         component={MealDetailScreen}
-        options={{
+        options={({route}) => ({
+          title: route.params.title,
           headerBackTitleVisible: false,
-        }}
+          headerRight: () => (
+            <HeaderRightBtn
+              iconName={route.params.isFavmeal ? 'heart' : 'heart-o'}
+              menuBtnClickAction={() => alert('This is a button!')}
+            />
+            // <Button
+            //   onPress={() => alert('This is a button!')}
+            //   title="Info"
+            //   color="#000"
+            // />
+          ),
+        })}
       />
     </Stack.Navigator>
   );
