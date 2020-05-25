@@ -1,24 +1,26 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import React from 'react';
+import {Button, StyleSheet, Text, View} from 'react-native';
 
-const CategoryMealsScreen = (props) => {
-    return (
-        <View style={styles.container}>
-            <Text>CategoryMealsScreen</Text>
-            <Button
-                title="Go to MealDetail"
-                onPress={() => props.navigation.navigate('MealDetail')}
-            />
-        </View>
-    );
+const CategoryMealsScreen = ({route, navigation}) => {
+  const {categoryId} = route.params;
+  const {otherParam} = route.params;
+  return (
+    <View style={styles.container}>
+      <Text>{categoryId}</Text>
+      <Button
+        title="Go to MealDetail"
+        onPress={() => navigation.navigate('MealDetail')}
+      />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default CategoryMealsScreen;
