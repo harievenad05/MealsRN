@@ -1,6 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {Platform} from 'react-native';
+import Colors from '../constants/Colors';
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
@@ -11,18 +12,21 @@ const MealsNavigator = (props) => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTintColor: Platform.OS === 'android' ? 'white' : 'tomato',
+        headerTintColor:
+          Platform.OS === 'android' ? 'white' : Colors.primaryColor,
         headerStyle: {
-          backgroundColor: Platform.OS === 'android' ? 'tomato' : 'null',
+          backgroundColor:
+            Platform.OS === 'android' ? Colors.primaryColor : 'null',
         },
       }}>
       <Stack.Screen name="Categories" component={CategoriesScreen} />
       <Stack.Screen
         name="CategoryMeal"
         component={CategoryMealsScreen}
-        options={{
+        options={({route}) => ({
+          title: route.params.title,
           headerBackTitleVisible: false,
-        }}
+        })}
       />
       <Stack.Screen
         name="MealDetail"
