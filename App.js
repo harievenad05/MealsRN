@@ -1,12 +1,12 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import 'react-native-gesture-handler';
-import MealsFavTabNavigator from './src/navigation/MealsNavigator';
+import MealsTabNavigator from './src/navigation/MealsNavigator';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <MealsFavTabNavigator />
+      <MealsTabNavigator />
     </NavigationContainer>
   );
 };
