@@ -152,7 +152,7 @@ const FilterStackNavigator = (props) => {
           headerRight: () => (
             <HeaderRightBtn
               iconName={'content-save'}
-              menuBtnClickAction={route.params.save}
+              menuBtnClickAction={() => route.params.save()}
             />
           ),
         })}
