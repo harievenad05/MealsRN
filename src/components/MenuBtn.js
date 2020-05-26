@@ -27,9 +27,9 @@ const styles = StyleSheet.create({
     paddingLeft: 25,
   },
   imgStyle: {
-    height: 23,
-    width: 23,
-    tintColor: Colors.primaryColor,
+    height: 21,
+    width: 21,
+    tintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
   },
 });
 

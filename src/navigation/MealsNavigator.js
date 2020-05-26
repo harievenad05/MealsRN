@@ -1,8 +1,15 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {Platform} from 'react-native';
+import {createDrawerNavigator, DrawerItem} from '@react-navigation/drawer';
+import {
+  Platform,
+  View,
+  Button,
+  Text,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import HeaderRightBtn from '../components/headerRButton';
 import Colors from '../constants/Colors';
 import CategoriesScreen from '../screens/CategoriesScreen';
@@ -12,6 +19,7 @@ import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MenuBtn from '../components/MenuBtn';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -149,10 +157,52 @@ const FilterStackNavigator = (props) => {
 
 const MealsDrawerNavigator = (props) => {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="MealsTab" component={MealsTabNavigator} />
-      <Drawer.Screen name="Filter Meals" component={FilterStackNavigator} />
+    // <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props} />}>
+    <Drawer.Navigator
+      drawerContentOptions={{
+        activeTintColor: Colors.primaryColor,
+        // itemStyle: {marginTop: 10},
+        labelStyle: {fontSize: 14, fontWeight: 'bold'},
+      }}>
+      <Drawer.Screen
+        name="MealsTab"
+        component={MealsTabNavigator}
+        options={{
+          title: 'Meals',
+          drawerIcon: ({focused, size}) => {
+            <Icon name="star" size={size} color={focused ? '#7cc' : '#ccc'} />;
+          },
+        }}
+      />
+      <Drawer.Screen
+        name="FilterMeals"
+        component={FilterStackNavigator}
+        options={{
+          title: 'Filter',
+          drawerIcon: ({focused, size}) => {
+            <Icon name="star" size={size} color={focused ? '#7cc' : '#ccc'} />;
+          },
+        }}
+      />
     </Drawer.Navigator>
+  );
+};
+
+const CustomDrawer = ({navigation}) => {
+  return (
+    <View style={{paddingTop: 100}}>
+      <TouchableOpacity onPress={() => navigation.navigate('MealsTab')}>
+        <Text style={{fontSize: 18, paddingLeft: 40, paddingBottom: 20}}>
+          <Icon size={23} name={'restaurant'}></Icon> Menu 1
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => navigation.navigate('FilterMeals')}>
+        <Text style={{fontSize: 18, paddingLeft: 40}}>
+          <Icon size={23} name={'star'}></Icon> Menu 2
+        </Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
