@@ -149,6 +149,12 @@ const FilterStackNavigator = (props) => {
               }}
             />
           ),
+          headerRight: () => (
+            <HeaderRightBtn
+              iconName={'content-save'}
+              menuBtnClickAction={route.params.save}
+            />
+          ),
         })}
       />
     </Stack.Navigator>
@@ -177,12 +183,12 @@ const MealsDrawerNavigator = (props) => {
       <Drawer.Screen
         name="FilterMeals"
         component={FilterStackNavigator}
-        options={{
+        options={({route}) => ({
           title: 'Filter',
           drawerIcon: ({focused, size}) => {
             <Icon name="star" size={size} color={focused ? '#7cc' : '#ccc'} />;
           },
-        }}
+        })}
       />
     </Drawer.Navigator>
   );
