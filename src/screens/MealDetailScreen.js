@@ -1,11 +1,12 @@
 import React from 'react';
 import {Button, StyleSheet, Text, View, ScrollView, Image} from 'react-native';
-import {MEALS} from '../data/dummy-data';
+import {useSelector} from 'react-redux';
 
 const MealDetailScreen = ({route, navigation}) => {
   const {detailId} = route.params;
   const {otherParam} = route.params;
-  const selectedMeal = MEALS.find((meal) => meal.id === detailId);
+  const meals = useSelector((state) => state.meals.meals);
+  const selectedMeal = meals.find((meal) => meal.id === detailId);
   return (
     <ScrollView>
       <View style={styles.container}>
