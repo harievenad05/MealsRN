@@ -65,7 +65,7 @@ const MealsStackNavigator = (props) => {
           headerRight: () => (
             <HeaderRightBtn
               iconName={route.params.isFavmeal ? 'heart' : 'heart-o'}
-              menuBtnClickAction={() => console.log('Marked as favorite...')}
+              menuBtnClickAction={() => route.params.toggleFav()}
             />
           ),
         })}
