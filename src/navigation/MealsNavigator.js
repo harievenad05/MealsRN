@@ -64,7 +64,7 @@ const MealsStackNavigator = (props) => {
           headerBackTitleVisible: false,
           headerRight: () => (
             <HeaderRightBtn
-              iconName={route.params.isFavmeal ? 'heart' : 'heart-o'}
+              iconName={route.params.isFavMeal ? 'heart' : 'heart-outline'}
               menuBtnClickAction={() => route.params.toggleFav()}
             />
           ),
@@ -99,8 +99,8 @@ const FavStackNavigator = (props) => {
           headerBackTitleVisible: false,
           headerRight: () => (
             <HeaderRightBtn
-              iconName={route.params.isFavmeal ? 'heart' : 'heart-o'}
-              menuBtnClickAction={() => console.log('Marked as favorite...')}
+              iconName={route.params.isFavMeal ? 'heart' : 'heart-outline'}
+              menuBtnClickAction={() => route.params.toggleFav()}
             />
           ),
         })}

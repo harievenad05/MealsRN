@@ -7,6 +7,10 @@ const MealDetailScreen = ({route, navigation}) => {
   const {detailId} = route.params;
   const {otherParam} = route.params;
   const meals = useSelector((state) => state.meals.meals);
+  const isAnyfavMeal = useSelector((state) =>
+    state.meals.favoriteMeals.some((meal) => meal.id === detailId),
+  );
+  console.log(isAnyfavMeal);
   const selectedMeal = meals.find((meal) => meal.id === detailId);
 
   const dispatch = useDispatch();
@@ -18,7 +22,8 @@ const MealDetailScreen = ({route, navigation}) => {
   useEffect(() => {
     // props.navigation.setParams({ mealTitle: selectedMeal.title });
     navigation.setParams({toggleFav: toggleFavoriteHandler});
-  }, [toggleFavoriteHandler]);
+    navigation.setParams({isFavMeal: isAnyfavMeal});
+  }, [toggleFavoriteHandler, isAnyfavMeal]);
 
   return (
     <ScrollView>
